@@ -1,0 +1,71 @@
+// 1. 카드들을 담는 컨테이너
+.cardContainer {
+  display: grid;
+  padding: 24px; // 컨테이너 전체에 여백
+  gap: 24px; // 카드와 카드 사이의 간격
+
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// 2. 개별 카드 스타일 (더 깔끔하게 수정)
+.card {
+  display: flex;
+  flex-direction: column;
+
+  // width를 지우고 grid가 너비를 관리하도록 함
+  // height를 늘려서 비율을 더 좋게 수정
+  height: 270px;
+
+  // 배경색을 회색(#e0e0e0)에서 흰색(#ffffff)으로 변경
+  background-color: #ffffff;
+  border-radius: 12px;
+  // 그림자를 좀 더 부드럽게
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  // 이미지가 모서리를 튀어나가지 않도록
+  overflow: hidden; 
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  &__img {
+    width: 100%;
+    // 이미지 높이 확보
+    height: 180px; 
+    object-fit: cover;
+    // border-radius는 부모의 overflow:hidden으로 처리
+  }
+
+  &__label {
+    // flex를 이용해 남은 공간을 채우고 텍스트를 중앙 정렬
+    display: flex;
+    flex-grow: 1; // 남은 공간 모두 차지
+    align-items: center; // 세로 중앙
+    justify-content: center; // 가로 중앙
+    
+    padding: 0 16px; // 좌우 여백
+    font-size: 18px; // 폰트 크기 살짝 키움
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    // margin-top 제거 (flex로 대체)
+  }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 200px;
+    height: 200px;
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 180px;
+
+    &__label {
+      font-size: 14px;
+    }
+  }
+}
